@@ -1,0 +1,31 @@
+//Function to convert float to 32 bit hex
+//Sprintf of float takes too long so store 32bit hex variables on sd card and use other software to convert back
+
+//Used on PIC24 Quadcopter project
+
+#include <xc.h>
+#include <stdint.h>
+#include <stdio.h>
+
+char data[8];
+
+
+//Function inputs float(input) and returns 32bit HEX
+uint32_t floatToHEX32(float input){
+  //Union for converting float to bytes
+  union {
+    float   conFloat;
+    uint8_t conBytes[4];
+  } con;
+
+  con.conFloat = input;
+  
+  return  ((uint32_t)con.conBytes[3] << 24) | 
+          ((uint32_t)con.conBytes[2] << 16) | 
+          ((uint32_t)con.conBytes[1] << 8) | 
+          con.conBytes[0];
+}
+
+void main(void){  
+  sprintf(data, "%8lX", floatToHEX32(1.23456));     //How to use for data stream
+}
