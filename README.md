@@ -1,5 +1,7 @@
 # PIC24_Functions
 
 
-# floatToHEX32.c
- Shows how to convert a float to a 32bit HEX then getting a text stream using sprintf
+# floatHEX.c / floatHEX.h
+ Use to convert floats / long double to HEX and output to a text stream (char array)
+ Used for high speed data logging.
+ 250us to convert 30 floats at 16MHz clock
